@@ -29,14 +29,16 @@ run();
 
 
 function run(){
-
+for(var x = 0; x < repositories.length; x++){
+  renderTree(repositories[x]);
+}
 
 }
 
 function renderTree(repository) {
 
-// var text = createDiv(repository.name);
-// text.position(randomPositionX - 90, random(0, horizon));
+var text = createDiv(repository.name);
+text.position(randomPositionX - 90, random(0, horizon));
 
   beginShape();
   fill(73,49,28);
