@@ -1,5 +1,6 @@
 # Recomed Appointment Website Assessment
 
+Built using NodeJS, Express, handlebars and Materialize CSS.
 
 ### Setup:
 Clone the repository then type the following into your terminal to install the required packages.
