@@ -1,4 +1,4 @@
-# pricklyPlant
+# Recomed Appointment Website Assessment
 
 To run this application please type the following into your terminal:
 1. npm install (to install required packages)
