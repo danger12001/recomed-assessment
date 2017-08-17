@@ -7,7 +7,6 @@ exports.init = function() {
         storageBucket: "recomed-assessment-563a7.appspot.com",
     };
     firebase.initializeApp(config);
-    console.log('Database Initialized!');
 }
 
 exports.fetchData = function(timeMode, callback){
@@ -23,18 +22,6 @@ exports.fetchData = function(timeMode, callback){
       return 'not a valid time mode!';
   }
 
-}
-
-exports.fetch15Minutes = function(callback) {
-    firebase.database().ref('/quarterHour').once('value', function(snapshot) {
-        callback(snapshot.val());
-    })
-}
-
-exports.fetch30Minutes = function(callback) {
-    firebase.database().ref('/halfHour').once('value', function(snapshot) {
-        callback(snapshot.val())
-    })
 }
 
 exports.add = function(timeMode, data) {
