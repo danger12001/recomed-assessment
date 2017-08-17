@@ -1,23 +1,30 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <!-- this line removes any default padding and style. you might only need one of these values set. -->
-  <style> .info {
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+  .info {
             border: 1px solid black;
             color: white;
             padding: 10px;
             background-color: black;
-
-    }</style>
+    }
+    </style>
+    <link rel="shortcut icon" href="">
 </head>
 
 <body>
 {{{body}}}
 
-  <!-- <div id="p5_loading" class="loadingclass">this could be some sweet graphics loading lots of bits.</div> -->
-  <script language="javascript" type="text/javascript" src="./js/p5.js"></script>
-  <!-- <script language="javascript" src="./js/p5.sound.js"></script> -->
-  <script language="javascript" type="text/javascript" src="./js/sketch.js"></script>
-<script type='text/javascript' src='./js/p5.dom.js'></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script>
+$(document).ready(function(){
+   $('.modal').modal();
+   $('select').material_select();
+ });
+</script>
 </body>
 </html>

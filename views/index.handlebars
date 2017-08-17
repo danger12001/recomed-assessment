@@ -1,0 +1,54 @@
+<nav class='blue-theme'>
+    <div class="nav-wrapper">
+        <a href="#" class="left brand-logo" style='padding-left: 20px;'>Appointments for {{date}}</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a class='modal-trigger' href="#modal1">Add Appointment</a></li>
+
+        </ul>
+    </div>
+</nav>
+</br>
+<div class='grid-container'>
+    <div class="row">
+        {{#each data}}
+            <a class='remove-link' href='/{{this.id}}'>
+                <div class='appointment col s12 grid-block ' style='height: 50px;'>
+
+                    <div class='row'>
+                        <div class="col s2 time-grid-block valign-wrapper " style='height: 50px;'>
+                            <p class='center time' style='width: 100%'>{{time}}</p>
+                        </div>
+                        <div class="col s10 valign-wrapper" style='height: 50px;'>
+                            <p class='center description' style='width: 100%'> {{appointment.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {{/each}}
+    </div>
+</div>
+<div id="modal1" class="modal bottom-sheet blue-theme">
+    <form class='white-text' action="/" method="post">
+        <div class="modal-content">
+            <h4>Add Appointment</h4>
+
+            <div class="input-field col s12">
+                <select name='id'>
+        <option value="" disabled selected>Appointment Time</option>
+        {{#each data}}
+        {{#unless this.appointment.description}}
+        <option value='{{this.id}}'> {{this.time}}</option>
+        {{/unless}}
+        {{/each}}
+      </select>
+            </div>
+
+            <div class="input-field col s12 blue-theme">
+                <input name='description' placeholder="Appointment Description" />
+            </div>
+        </div>
+        <div class="modal-footer blue-theme">
+            <input type='submit' class="modal-action modal-close waves-effect waves-green btn-flat white-text" value='Add' />
+        </div>
+    </form>
+</div>

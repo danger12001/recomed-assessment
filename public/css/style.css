@@ -1,0 +1,49 @@
+body {
+  background-color: #808080
+}
+.grid-block {
+  border: 1px solid black;
+  background-color: white;
+}
+.appointment:hover {
+  background-color: #26a69a;
+}
+.blue-theme {
+  background-color: #26a69a !important;
+}
+.green-theme {
+  background-color: #1d913c !important;
+}
+.appointment2:hover {
+  background-color: #1d913c;
+}
+.hidden {
+  display: none;
+}
+.time-grid-block {
+  border-right: 1px solid black;
+}
+.remove-link {
+  color: black;
+}
+.time {
+overflow: hidden;
+}
+.description {
+  overflow: hidden;
+}
+.grid-container {
+  width: 90%;
+      margin: 0 auto;
+}
+input {
+  border-bottom: 1px solid white !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    color: white;
+    -webkit-text-fill-color: white !important;
+}
