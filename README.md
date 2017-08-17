@@ -16,5 +16,5 @@ If the webserver is running correctly you should be able to access the appointme
 2. localhost:3001 (30 minute appointment slots - in a green theme).
 
 ### Usage:
-1. Click on a timeslot to remove a appointment.
+1. Click on a timeslot to remove an appointment.
 2. Add appointments by clicking the 'Add appointment' button on the navbar.
