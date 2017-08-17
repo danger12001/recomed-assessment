@@ -1,9 +1,5 @@
 
 var firebase = require("firebase");
-
-
-var data = {}
-
 exports.init = function(){
   var config = {
     apiKey: "AIzaSyDWxq5D96gxY_wQ94lUXf2-fuzqC4FFvPc",
@@ -28,7 +24,8 @@ exports.fetch30Minutes = function(callback){
 }
 
 exports.add = function(timeMode,data){
-if(data.id !== undefined || data.description !== ''){
+if(data.description !== '' || data.description !== undefined){
+  if(data.id !== undefined){
   if(timeMode === 15){
     firebase.database().ref('/quarterHour/' + data.id).update({
         appointment: {description: data.description},
@@ -44,6 +41,7 @@ if(data.id !== undefined || data.description !== ''){
   }
 } else {
   console.log('invalid data');
+}
 }
 }
 

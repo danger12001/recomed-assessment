@@ -1,5 +1,5 @@
 body {
-  background-color: #808080
+  background-color: #a1a1a1;
 }
 .grid-block {
   border: 1px solid black;
@@ -28,9 +28,11 @@ body {
 }
 .time {
 overflow: hidden;
+font-size: 20px;
 }
 .description {
   overflow: hidden;
+  font-size: 16px;
 }
 .grid-container {
   width: 90%;
