@@ -2,7 +2,7 @@
 
 
 ### Setup:
-Type the following into your terminal to install the required packages.
+Clone the repository then type the following into your terminal to install the required packages.
 
 $ npm install
 
