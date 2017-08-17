@@ -31,15 +31,13 @@ exports.add = function(timeMode, data) {
                 firebase.database().ref('/quarterHour/' + data.id).update({
                     appointment: {
                         description: data.description
-                    },
-                    removed: true
+                    }
                 })
             } else if (timeMode === 30) {
                 firebase.database().ref('/halfHour/' + data.id).update({
                     appointment: {
                         description: data.description
-                    },
-                    removed: true
+                    }
                 });
             } else {
                 return 'not a valid time mode!';
@@ -56,15 +54,13 @@ exports.remove = function(timeMode, id) {
         firebase.database().ref('/quarterHour/' + id).update({
             appointment: {
                 description: ''
-            },
-            removed: true
+            }
         })
     } else if (timeMode === 30) {
         firebase.database().ref('/halfHour/' + id).update({
             appointment: {
                 description: ''
-            },
-            removed: true
+            }
         });
     } else {
         return 'not a valid time mode!';
