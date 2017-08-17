@@ -5,9 +5,9 @@ var firebase = require("firebase");
 var database = require('./routes/database');
 var date = require('./routes/date');
 
-var localhost1 = express();
-var localhost2 = express();
-var servers = [localhost1, localhost2];
+var server1 = express();
+var server2 = express();
+var servers = [{server:server1, timeMode: 15}, {server: server2, timeMode: 30}];
 
 function hostServer(server, port) {
     server.listen(port, function() {
@@ -17,56 +17,41 @@ function hostServer(server, port) {
 }
 
 function setupServer() {
+  database.init();
     for (var i = 0; i < servers.length; i++) {
-        servers[i].use(express.static("public"));
-        servers[i].use(bodyParser.urlencoded({
+        servers[i].server.use(express.static("public"));
+        servers[i].server.use(bodyParser.urlencoded({
             extended: true
         }));
-        servers[i].use(bodyParser.json());
-        servers[i].engine('handlebars', handlebars({
+        servers[i].server.use(bodyParser.json());
+        servers[i].server.engine('handlebars', handlebars({
             defaultLayout: 'main'
         }));
-        servers[i].set('view engine', 'handlebars');
-        hostServer(servers[i], 3000 + i);
+        servers[i].server.set('view engine', 'handlebars');
+        hostServer(servers[i].server, 3000 + i);
+        setupRoutes(servers[i].server, servers[i].timeMode);
     }
 }
 
-database.init();
+function setupRoutes(server, timeMode){
+server.get('/', function(req, res){
+  database.fetchData(timeMode, function(data){
+    res.render('index', {
+      data: data,
+      date: date.fetchDate()
+    })
+  })
+})
+
+server.get('/:id', function(req, res) {
+    database.remove(timeMode, req.params.id)
+    res.redirect('/')
+});
+
+server.post('/', function(req, res) {
+    database.add(timeMode, req.body);
+    res.redirect('/')
+});
+}
+
 setupServer();
-
-localhost1.get('/', function(req, res) {
-    database.fetch15Minutes(function(data) {
-        res.render('index', {
-            data: data,
-            date: date.fetchDate()
-        });
-    });
-});
-
-localhost1.get('/:id', function(req, res) {
-    database.remove(15, req.params.id)
-    res.redirect('/')
-});
-localhost1.post('/', function(req, res) {
-    database.add(15, req.body);
-    res.redirect('/')
-});
-
-localhost2.get('/', function(req, res) {
-    database.fetch30Minutes(function(data) {
-        res.render('index2', {
-            data: data,
-            date: date.fetchDate()
-        });
-    });
-});
-
-localhost2.get('/:id', function(req, res) {
-  database.remove(30, req.params.id)
-  res.redirect('/')
-});
-
-localhost2.post('/', function(req, res) {
-  database.add(30, req.body);
-  res.redirect('/')
-});
