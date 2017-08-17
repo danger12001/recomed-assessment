@@ -9,18 +9,18 @@ exports.init = function() {
     firebase.initializeApp(config);
 }
 
-exports.fetchData = function(timeMode, callback){
-  if (timeMode === 15) {
-    firebase.database().ref('/quarterHour').once('value', function(snapshot) {
-        callback(snapshot.val());
-    })
-  } else if (timeMode === 30) {
-    firebase.database().ref('/halfHour').once('value', function(snapshot) {
-        callback(snapshot.val())
-    })
-  } else {
-      return 'not a valid time mode!';
-  }
+exports.fetchData = function(timeMode, callback) {
+    if (timeMode === 15) {
+        firebase.database().ref('/quarterHour').once('value', function(snapshot) {
+            callback(snapshot.val());
+        })
+    } else if (timeMode === 30) {
+        firebase.database().ref('/halfHour').once('value', function(snapshot) {
+            callback(snapshot.val())
+        })
+    } else {
+        return 'not a valid time mode!';
+    }
 
 }
 

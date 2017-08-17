@@ -1,13 +1,12 @@
 var express = require('express'),
-    handlebars = require('express-handlebars');
-var bodyParser = require('body-parser');
-var firebase = require("firebase");
-var database = require('./routes/database');
-var date = require('./routes/date');
+    handlebars = require('express-handlebars'),
+    bodyParser = require('body-parser');
 
-var server1 = express();
-var server2 = express();
-var servers = [{server:server1, timeMode: 15}, {server: server2, timeMode: 30}];
+var firebase = require("firebase"),
+    database = require('./routes/database'),
+    date = require('./routes/date');
+
+var servers = [{server: express(),timeMode: 15}, {server: express(),timeMode: 30}];
 
 function hostServer(server, port) {
     server.listen(port, function() {
@@ -17,7 +16,7 @@ function hostServer(server, port) {
 }
 
 function setupServer() {
-  database.init();
+    database.init();
     for (var i = 0; i < servers.length; i++) {
         servers[i].server.use(express.static("public"));
         servers[i].server.use(bodyParser.urlencoded({
@@ -33,25 +32,25 @@ function setupServer() {
     }
 }
 
-function setupRoutes(server, timeMode){
-server.get('/', function(req, res){
-  database.fetchData(timeMode, function(data){
-    res.render('index', {
-      data: data,
-      date: date.fetchDate()
+function setupRoutes(server, timeMode) {
+    server.get('/', function(req, res) {
+        database.fetchData(timeMode, function(data) {
+            res.render('index' + timeMode, {
+                data: data,
+                date: date.fetchDate()
+            })
+        })
     })
-  })
-})
 
-server.get('/:id', function(req, res) {
-    database.remove(timeMode, req.params.id)
-    res.redirect('/')
-});
+    server.get('/:id', function(req, res) {
+        database.remove(timeMode, req.params.id)
+        res.redirect('/')
+    });
 
-server.post('/', function(req, res) {
-    database.add(timeMode, req.body);
-    res.redirect('/')
-});
+    server.post('/', function(req, res) {
+        database.add(timeMode, req.body);
+        res.redirect('/')
+    });
 }
 
 setupServer();
